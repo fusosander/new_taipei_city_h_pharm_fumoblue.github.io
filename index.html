@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新北市立聯合醫院</title>
+    <title>下拉式選單網站</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,6 +19,19 @@
             border: 1px solid #ccc;
             background-color: #f9f9f9;
         }
+        #image-container {
+            margin-top: 20px;
+            width: 560px;
+            height: 315px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #image-container img {
+            max-width: 100%;
+            max-height: 100%;
+        }
         #video-container {
             margin-top: 20px;
         }
@@ -26,14 +39,12 @@
 </head>
 <body>
 
-<h1>管灌示範</h1>
+<h1>下拉式選單網站</h1>
 
 <select id="dropdown">
     <option value="">請選擇一個選項</option>
     <option value="DRUG_1">DRUG_1</option>
-    <option value="DRUG_2">DRUG_2</option>    
-	<option value="DRUG_3">DRUG_3</option>
-
+    <option value="DRUG_2">DRUG_2</option>
 </select>
 
 <div id="content">
@@ -41,14 +52,24 @@
     請選擇一個選項以顯示相應的內容。
 </div>
 
-<div id="video-container"></div>
+<div id="image-container">
+    <!-- 用於顯示選擇的圖片 -->
+</div>
+<div id="video-container">
+    <!-- 用於顯示選擇的影片 -->
+</div>
 
 <script>
     // 定義選項對應的內容物件
     var contentMap = {
         DRUG_1: "DRUG_1 內容自行更改",
-        DRUG_2: "DRUG_2 內容自行更改",
-        DRUG_3: "DRUG_awflijfiw 內容自行更改"
+        DRUG_2: "DRUG_2 內容自行更改"
+    };
+
+    // 定義選項對應的圖片物件
+    var imageMap = {
+        DRUG_1: "https://drive.google.com/uc?export=view&id=1e9yWANQcpA4H6BPejY_qWeqGb1AYp69g",
+        DRUG_2: "https://drive.google.com/uc?export=view&id=1e9yWANQcpA4H6BPejY_qWeqGb1AYp69g"
     };
 
     // 獲取下拉式選單元素
@@ -57,6 +78,8 @@
     var content = document.getElementById('content');
     // 獲取播放影片的容器元素
     var videoContainer = document.getElementById('video-container');
+    // 獲取顯示圖片的容器元素
+    var imageContainer = document.getElementById('image-container');
 
     // 當下拉式選單選擇內容發生變化時觸發
     dropdown.addEventListener('change', function() {
@@ -67,34 +90,29 @@
         // 更新顯示內容
         content.textContent = selectedContent;
 
+        // 清空圖片容器內的內容
+        imageContainer.innerHTML = '';
         // 清空影片容器內的內容
         videoContainer.innerHTML = '';
 
-        // 如果選擇了 "DRUG_1"
-        if (selectedValue === 'DRUG_1') {
-            // 嵌入 YouTube 影片
+        // 根據選擇的值顯示對應的圖片和影片
+        if (selectedValue) {
+            // 顯示對應的圖片
+            var image = document.createElement('img');
+            image.setAttribute('src', imageMap[selectedValue]);
+            image.setAttribute('alt', selectedValue + ' 圖片');
+            imageContainer.appendChild(image);
+
+            // 顯示對應的影片
             var videoEmbed = document.createElement('iframe');
             videoEmbed.setAttribute('width', '560');
             videoEmbed.setAttribute('height', '315');
-            videoEmbed.setAttribute('src', 'https://www.youtube.com/embed/FOuSxal8pf4');
+            if (selectedValue === 'DRUG_1') {
+                videoEmbed.setAttribute('src', 'https://www.youtube.com/embed/FOuSxal8pf4');
+            } else if (selectedValue === 'DRUG_2') {
+                videoEmbed.setAttribute('src', 'https://drive.google.com/file/d/1rflZJSIL5NZ-WCYPKesiOkajg46TRLQj/preview');
+            }
             videoEmbed.setAttribute('allowfullscreen', '');
-            videoContainer.appendChild(videoEmbed);
-        }
-        // 如果選擇了 "DRUG_2"
-        else if (selectedValue === 'DRUG_2') {
-            // 嵌入 Google Drive 影片
-            var videoEmbed = document.createElement('iframe');
-            videoEmbed.setAttribute('width', '560');
-            videoEmbed.setAttribute('height', '315');
-            videoEmbed.setAttribute('src', 'https://drive.google.com/file/d/1J5DOJDbQn6SqUEcNETwW3rSlKJ1csSwM/preview');
-            videoContainer.appendChild(videoEmbed);
-        }
-	 else if (selectedValue === 'DRUG_3') {
-            // 嵌入 Google Drive 影片
-            var videoEmbed = document.createElement('iframe');
-            videoEmbed.setAttribute('width', '560');
-            videoEmbed.setAttribute('height', '315');
-            videoEmbed.setAttribute('src', 'https://drive.google.com/file/d/1o6zqaroztZ6MKEhuN6VGWyFGqyK903-6/preview');
             videoContainer.appendChild(videoEmbed);
         }
     });
@@ -102,3 +120,4 @@
 
 </body>
 </html>
+
