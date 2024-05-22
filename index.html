@@ -3,73 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>下拉式選單網站</title>
+    <title>口服劑型藥品再製資訊</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
+            line-height: 1.6;
         }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .search-container,
+        .dropdown-container,
+        .info-container,
+        .test-container {
+            margin-bottom: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type="text"],
         select {
+            width: 100%;
             padding: 10px;
+            margin: 10px 0;
             font-size: 16px;
         }
         #content {
-            margin-top: 20px;
             padding: 20px;
             border: 1px solid #ccc;
             background-color: #f9f9f9;
+            height: 200px;
         }
-        #image-container {
-            margin-top: 20px;
-            width: 560px;
-            height: 315px;
+        .images-container img {
+            width: 100%;
+            height: auto;
             border: 1px solid #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin-bottom: 10px;
         }
-        #image-container img {
-            max-width: 100%;
-            max-height: 100%;
+        .description-container {
+            text-align: center;
+            padding: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
         }
         #video-container {
             margin-top: 20px;
+            text-align: center;
+        }
+        iframe {
+            width: 100%;
+            height: 315px;
         }
     </style>
 </head>
 <body>
 
-<h1>下拉式選單網站</h1>
+<div class="container">
+    <h1>口服劑型藥品再製資訊</h1>
+    <p>作者：北醫藥膳兔子 <br>版本 v0.9</p>
 
-<select id="dropdown">
-    <option value="">請選擇一個選項</option>
-    <option value="DRUG_1">DRUG_1</option>
-    <option value="DRUG_2">DRUG_2</option>
-</select>
+    <div class="search-container">
+        <label for="search">藥品搜尋</label>
+        <input type="text" id="search" placeholder="請輸入選項">
+    </div>
 
-<div id="content">
-    <!-- 用於顯示選擇的內容 -->
-    請選擇一個選項以顯示相應的內容。
-</div>
+    <div class="dropdown-container">
+        <label for="dropdown">品名</label>
+        <select id="dropdown">
+            <option value="">請選擇一個選項</option>
+            <option value="ABIRATRED">◆Abiratred tab 250mg愛瑞治膜衣錠</option>
+            <option value="ANAZO">◆Anazo 1mg(安納柔膜衣錠)</option>
+            <option value="AROMASIN">(專案)Aromasin S.C.tab 25mg(諾曼癌素)</option>
+            <option value="CASODEX">◆Casodex tab 50mg蘇可多錠</option>
+            <option value="Erleada">◆Erleada F.C.tab 60mg安列康膜衣錠</option>
+            <option value="GLIVEC">(專案)◆Glivec 100mg (基利克) fctab.</option>
+            <option value="LENOZOLE">◆Lenozole 2.5mg(萊諾妥膜衣錠)</option>
+            <option value="METHOTREXATE">▲Methotrexate 2.5mg(滅殺除癌錠)</option>
+            <option value="NOLVODEX">◆Nolvadex 10mg 諾瓦得士錠 (Tamoxifen)</option>
+            <option value="STIVAGA">◆Stivarga F.C tab 40mg癌瑞格膜衣錠</option>
+            <option value="SUTENT">◆SUTENT 12.5MG紓癌特膠囊</option>
+            <option value="TS_1">◆TS_1 20MG愛斯萬膠囊20毫克</option>
+            <option value="Ufur">UFUR 100MG友復膠囊</option>
+            <option value="VOTRIENT">VOTRIENT FILM-COATED 200MG福退癌膜衣錠</option>
+            <option value="XELODA">XeLODA Tab 500mg截瘤達錠500公絲</option>
+            <option value="ZYTIGA">ZYTIGA 250MG 澤珂錠</option>
 
-<div id="image-container">
-    <!-- 用於顯示選擇的圖片 -->
-</div>
-<div id="video-container">
-    <!-- 用於顯示選擇的影片 -->
+        </select>
+    </div>
+
+    <div class="info-container">
+        <label for="content">再製資訊</label>
+        <div id="content">
+            <!-- 用於顯示選擇的內容 -->
+            請選擇一個選項以顯示相應的內容。
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>崩散試驗</h2>
+        <div class="images-container">
+            <img id="image1" src="" alt="相片1">
+            <div class="description-container" id="desc1">說明1</div>
+            <img id="image2" src="" alt="相片2">
+            <div class="description-container" id="desc2">說明2</div>
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>管灌試驗</h2>
+        <div id="video-container">
+            <!-- 用於顯示選擇的影片 -->
+            影片
+        </div>
+    </div>
 </div>
 
 <script>
     // 定義選項對應的內容物件
     var contentMap = {
-        DRUG_1: "DRUG_1 內容自行更改",
-        DRUG_2: "DRUG_2 內容自行更改"
+        ABIRATRED: "ABIRATRED的建議劑量為每日一次口服投予1,000毫克（4顆250毫克錠），合併每日兩次口服投予prednisone或prednisolone 5毫克。ABIRATRED必須空腹服用。服用ABIRATRED前應至少2小時不可進食，服用ABIRATRED後亦應至少1小時不可進食本錠劑應整顆以水送服。請勿壓碎或嚼碎本錠",
+        ANAZO: "一線治療局部晚期或轉移性乳腺癌：每日1毫克。持續治療直到腫瘤進展。二線治療晚期乳腺癌：\n每日1毫克。持續治療直到腫瘤進展。早期乳腺癌的輔助治療：每日1毫克。最佳持續時間未知；正在進行的臨床研究計劃設計為5年治療期。",
+        AROMASIN: " 口服，推薦劑量為一次25 mg，1日1次，宜飯後服用。採用AROMASIN的治療應堅持直至腫瘤進展。對肝腎功能不全患者無需劑量調整。",
+        CASODEX:" 成年男子，包括老人：一天一錠(50公絲)。本品應與LHRH類似劑或手術去勢療法同時開始使用。  ",
+        Erleada: "對於難以吞嚥整顆錠劑的病人，將建議劑量的ERLEADA錠劑加蘋果醬混合後服用，方法如下：1. 用攪拌的方式將整顆ERLEADA錠劑與4盎司(120毫升)蘋果醬混合。不要壓碎錠劑。2. 等待15分鐘，攪拌混合物。3. 再等待15分鐘，攪拌混合物直至錠劑分散(充分混合，沒有殘餘大塊的錠劑)。4. 用湯匙立即吞下混合物。5. 以2盎司(60mL)的水沖洗容器，並立即飲用內容物。再次以2盎司(60mL)的水重複沖洗後飲用，以確保全部劑量都被服用。應於準備後一小時內服用混合物。請勿儲存ERLEADA與蘋果醬之混合物 。",
+        GLIVEC: " 無法吞服膜衣錠之病人，可將錠劑泡在一大杯水或蘋果汁中服用。治療慢性骨髓性白血病的劑量: 建議每天 400毫克加速期或急性轉化期的患者，建議每天 600毫克。 治療費城染色體陽性急性淋巴性白血病的劑量: 建議每天使用 600 毫克。 ",
+        LENOZOLE: "成人和老人:建議劑量為每日一次Letrozole 2.5毫克",
+        METHOTREXATE: "口服給藥：一次劑量不大於30mg/m3，連續給藥不超過5天之後至少停2個星期，以便骨髓功能恢復正常。",
+        NOLVODEX: " 每天20~40mg，可分為一天兩次給藥，或一天一次給藥。 ",
+        STIVAGA:" 一個服藥週期為 28 天，建議劑量為每個週期的前 21 天，每日一次口服 160 mg STIVARGA (四顆 40 mg 藥錠)。持續接受治療直到病況惡化或發生無法接受的毒性。請於每日同一時間服用STIVARGA。請在食用一份所含熱量不到600卡路里且所含脂肪不到30%的低脂餐點後，配水吞服整顆藥錠。請勿為了彌補前一日的劑量，而在一日內服用兩份劑量的STIVARGA。 ",
+        SUTENT : " 每天4粒，一次頓服4粒，服用1療程後需停藥觀察2周後繼續服用。一個療程6周。 ",
+        TS_1 : " 通常為依據體表面積之成人初始劑量(單次劑量)。TS-1於早、晚餐後一天共兩次給藥，連續給予28天，之後停藥14天，即為一個療程。",
+        Ufur : " 口服使用，每日劑量以tegafur計算為500-800 mg/day（或300-350 mg/m2/day），分2~3次服用。",
+        VOTRIENT : "VOTRIENT之建議劑量為一天一次，空腹時口服800 mg（至少於用餐前1小時或用餐後2小時。VOTRIENT 之劑量不應超過 800 mg。請勿壓碎藥錠，因為可能會增加吸收速率而影響全身暴露量。當漏服一劑時，如果與下次服藥時間的間隔小於12個小時，請勿補服。",
+        XELODA : "建議劑量是每天2500mg/㎡，使用二星期，接著停藥一個星期。每天劑量分成二次(早上與晚上)於飯後三十分鐘內口服。",
+        ZYTIGA : "ZYTIGA的建議劑量為每日一次口服投予1,000毫克（4顆250毫克錠），合併每日兩次口服投予prednisone 或prednisolone 5 毫克。ZYTIGA必須空腹服用。服用ZYTIGA前應至少2小時不可進食，服用ZYTIGA後亦應至少1 小時不可進食。本錠劑應整顆以水送服。請勿壓碎或嚼碎本錠。"
+
+        
     };
 
     // 定義選項對應的圖片物件
     var imageMap = {
-        DRUG_1: "https://drive.google.com/uc?export=view&id=1e9yWANQcpA4H6BPejY_qWeqGb1AYp69g",
-        DRUG_2: "https://drive.google.com/uc?export=view&id=1e9yWANQcpA4H6BPejY_qWeqGb1AYp69g"
+        ABIRATRED: [
+            "https://drive.google.com/thumbnail?id=1aNi7DtKXld9BtVn3nG9Bflz2Z-81gy_r",
+            "https://drive.google.com/thumbnail?id=1UAnS26woAWcY7nT-AfHxWJdnZ2E_wTTs"
+        ],
+        ANAZO: [
+                "https://drive.google.com/thumbnail?id=1l44MdWLdKJPlNj8h24OsNqMSNVPixX5Z",
+                "https://drive.google.com/thumbnail?id=1DeONVPuPXoz1bYEb042lNtsGrdcZLzaD"
+        ],
+        AROMASIN: [
+                "https://drive.google.com/thumbnail?id=1urNBf1Vzi8sS3cYISu3qxj3u9qgOyjDM",
+                "https://drive.google.com/thumbnail?id=1v6qwd0S1Oq1SLHiwXN-lnjZPcLttpFRY"
+        ],
+        CASODEX: [
+                "https://drive.google.com/thumbnail?id=1vsbSwOXPjkMOba5sneZ1NNloGmOVwtVx",
+                "https://drive.google.com/thumbnail?id=1w3qiR1zP3ohrtoCN13rMuQEctrq8jVSa"
+        ],
+        Erleada: [
+                "https://drive.google.com/thumbnail?id=1rDfDwsFC0OzvMGmF0TysETXuSfJqvA5g",
+                "https://drive.google.com/thumbnail?id=1e9yWANQcpA4H6BPejY_qWeqGb1AYp69g"
+        ],
+        GLIVEC: [
+                "https://drive.google.com/thumbnail?id=1G2BKisEhudHUKZyyL5tU3cdJGANTCgZd",
+                "https://drive.google.com/thumbnail?id=1OjhwV5MwSnuAYLU9W4fO2g3a8apPzTup"
+        ],
+        LENOZOLE: [
+                "https://drive.google.com/thumbnail?id=1rDfDwsFC0OzvMGmF0TysETXuSfJqvA5g",
+                "https://drive.google.com/thumbnail?id=1e9yWANQcpA4H6BPejY_qWeqGb1AYp69g"
+        ],
+        METHOTREXATE: [
+                "https://drive.google.com/file/d/1jlkMgl6denXFIgGNnGX82eUsuFUkw4EC/preview",
+                "https://drive.google.com/thumbnail?id=1nfQmU52cHzISkLBmJdnd2CiGiwAZZqPe"
+        ],
+        NOLVODEX: [
+                "https://drive.google.com/thumbnail?id=1uPcOMWuE7SdiAHuTaNRWr8R_zKNMQ1ec",
+                "https://drive.google.com/thumbnail?id=1MKSb-PUulEq0xfU8TnJ15zhy2HfC18nW"
+        ],
+        STIVAGA: [
+            "https://drive.google.com/thumbnail?id=1XOqOlzIEW8yDOF4Fw2S7yVH-4jkF5tFa",
+            "https://drive.google.com/thumbnail?id=19xkNjwzMaRj6nMM9R9dnZwPQa2PFJeoO"
+        ],
+        SUTENT : [
+            "https://drive.google.com/thumbnail?id=10MJj3NhMIQIJf5HrkChn4ETGgiQE3IFP",
+            "https://drive.google.com/thumbnail?id=15pZ8JgTWwbbigHvMsgY8ML-CwAGTL3GZ"
+        ],
+        TS_1 : [
+            "https://drive.google.com/thumbnail?id=1tz-Y1UnVWGGTmsrTwp520ShLnXV5PxDm",
+            "https://drive.google.com/thumbnail?id=1u-lsNOti1k20PaiYgGZ2awmwSsc8LckC"
+        ],
+        Ufur : [
+            "https://drive.google.com/thumbnail?id=1k2hSxdP2_kRx2Cu80XNxXk48mGJ7m8u0",
+            "https://drive.google.com/thumbnail?id=1l4tY2OGTs78XFONrVvHXajhslMrFQU_y"
+        ],
+        VOTRIENT : [
+            "https://drive.google.com/thumbnail?id=1AkXe6EINSKh0zpa4y_7BB5ZEWm-Kla0x",
+            "https://drive.google.com/thumbnail?id=1H5wMJIFd131GbEaFs_uKMKhGerDAbmVy"
+        ],
+        XELODA : [
+            "https://drive.google.com/thumbnail?id=1dFreBlmEGQwNyXy-Or4RJRh7j5bvfDLu",
+            "https://drive.google.com/thumbnail?id=1q8UrIDAnNHC_vD5yJL0iEn01Y5i97hx1"
+        ],
+        ZYTIGA : [
+            "https://drive.google.com/thumbnail?id=1Moofip1WYLMFFDsOXKiSJZXP3Yp0WDOh",
+            "https://drive.google.com/thumbnail?id=1j2phHS5zjhxpX6S8GgJ4BC2QjQgAI4qT"
+        ]
+
+    };
+
+    // 定義圖片說明
+    var descMap = {
+        ABIRATRED: ["ABIRATRED裸錠", "溶離10分鐘後"],
+        ANAZO: ["ANAZO裸錠", "溶離10分鐘後"],
+        AROMASIN: ["AROMASIN裸錠", "溶離10分鐘後"],
+        CASODEX: ["CASODEX裸錠", "溶離10分鐘後"],
+        Erleada: ["Erleada裸錠", "溶離10分鐘後"],
+        GLIVEC: ["Glivec裸錠", "溶離10分鐘後"],
+        LENOZOLE:["LENOZOLE","溶離10分鐘後"],
+        METHOTREXATE:["METHOTREXATE裸錠","溶離10分鐘後"],
+        NOLVODEX:["NOLVODEX裸錠","溶離10分鐘後"],
+        STIVAGA:["STIVAGA裸錠","溶離10分鐘後"],
+        SUTENT : ["SUTENT裸錠","溶離10分鐘後"],
+        TS_1 : ["TS_1裸錠","溶離10分鐘後"],
+        Ufur : ["Ufur裸錠","溶離10分鐘後"],
+        VOTRIENT : ["VOTRIENT裸錠","溶離10分鐘後"],
+        XELODA : ["XELODA裸錠","溶離10分鐘後"],
+        ZYTIGA : ["ZYTIGA裸錠","溶離10分鐘後"]
+    };
+
+    // 定義選項對應的影片物件
+    var videoMap = {
+        ABIRATRED : null,
+        ANAZO : "https://drive.google.com/file/d/1pFacHn54IzEBGipIHatnZhtZg17BD3n8/preview",
+        AROMASIN : "https://drive.google.com/file/d/1v7RtY7WveaSvGBHhYw_uvErxh0TWfqfs/preview",
+        CASODEX : "https://drive.google.com/file/d/1wEsEOOiMx4ZB9YGRnv91At2CS5_rscUM/preview",
+        Erleada : "https://drive.google.com/file/d/1umpR7t7R5PL9tBZXt43WgrsAh3ZCgiLK/preview",
+        GLIVEC : null,
+        LENOZOLE : "https://drive.google.com/file/d/1vkqjr2TfSnMb8uWXrsWMv9ywmOqNx_3X/preview",
+        METHOTREXATE : "https://drive.google.com/file/d/1zILp_9_8M0bX0orA9lb9ntfqGqW_mYgt/preview",
+        NOLVODEX :"https://drive.google.com/file/d/1lgxiUTfhd3se5oC1FnW83WXzplA46BFA/preview",
+        STIVAGA : null,
+        SUTENT : null,
+        TS_1 : null,
+        Ufur : null,
+        VOTRIENT : null,
+        XELODA : null,
+        ZYTIGA : null,
+
     };
 
     // 獲取下拉式選單元素
@@ -79,42 +260,75 @@
     // 獲取播放影片的容器元素
     var videoContainer = document.getElementById('video-container');
     // 獲取顯示圖片的容器元素
-    var imageContainer = document.getElementById('image-container');
+    var image1 = document.getElementById('image1');
+    var image2 = document.getElementById('image2');
+    // 獲取圖片說明容器元素
+    var desc1 = document.getElementById('desc1');
+    var desc2 = document.getElementById('desc2');
+    // 獲取搜尋框元素
+    var searchInput = document.getElementById('search');
 
-    // 當下拉式選單選擇內容發生變化時觸發
-    dropdown.addEventListener('change', function() {
-        // 獲取選擇的值
-        var selectedValue = dropdown.value;
+    function displayContent(selectedValue) {
         // 獲取選擇的選項對應的文字內容
         var selectedContent = contentMap[selectedValue];
         // 更新顯示內容
         content.textContent = selectedContent;
 
-        // 清空圖片容器內的內容
-        imageContainer.innerHTML = '';
-        // 清空影片容器內的內容
+        // 清空圖片和影片容器內的內容
+        image1.src = '';
+        image2.src = '';
         videoContainer.innerHTML = '';
 
         // 根據選擇的值顯示對應的圖片和影片
         if (selectedValue) {
             // 顯示對應的圖片
-            var image = document.createElement('img');
-            image.setAttribute('src', imageMap[selectedValue]);
-            image.setAttribute('alt', selectedValue + ' 圖片');
-            imageContainer.appendChild(image);
+            var images = imageMap[selectedValue];
+            image1.src = images[0];
+            image2.src = images[1];
+
+            // 顯示對應的圖片說明
+            var descriptions = descMap[selectedValue];
+            desc1.textContent = descriptions[0];
+            desc2.textContent = descriptions[1];
 
             // 顯示對應的影片
-            var videoEmbed = document.createElement('iframe');
-            videoEmbed.setAttribute('width', '560');
-            videoEmbed.setAttribute('height', '315');
-            if (selectedValue === 'DRUG_1') {
-                videoEmbed.setAttribute('src', 'https://www.youtube.com/embed/FOuSxal8pf4');
-            } else if (selectedValue === 'DRUG_2') {
-                videoEmbed.setAttribute('src', 'https://drive.google.com/file/d/1rflZJSIL5NZ-WCYPKesiOkajg46TRLQj/preview');
-            }
-            videoEmbed.setAttribute('allowfullscreen', '');
-            videoContainer.appendChild(videoEmbed);
+            var videoUrl = videoMap[selectedValue];
+            //檢查有無管灌影片
+                if(videoUrl !== null){
+                    var videoEmbed = document.createElement('iframe');
+                    videoEmbed.setAttribute('src', videoUrl);
+                    videoEmbed.setAttribute('allowfullscreen', '');
+                    videoContainer.appendChild(videoEmbed);
+                }
+                else{
+                    videoContainer.textContent ='本藥品無法管灌'
+                }
+
         }
+    }
+
+    // 當搜尋框內容改變時觸發
+    searchInput.addEventListener('input', function() {
+        var searchValue = searchInput.value.toUpperCase();
+        var options = dropdown.options;
+
+        // 顯示或隱藏選項
+        for (var i = 1; i < options.length; i++) {
+            var optionText = options[i].text.toUpperCase();
+            options[i].style.display = optionText.indexOf(searchValue) > -1 ? "" : "none";
+        }
+
+        // 如果只有一個選項可見，則自動選擇它
+        var visibleOptions = Array.from(options).filter(option => option.style.display !== "none");
+        if (visibleOptions.length === 2) {
+            dropdown.value = visibleOptions[1].value;
+            displayContent(dropdown.value);
+        }
+    });
+
+    // 當下拉式選單選擇內容發生變化時觸發
+    dropdown.addEventListener('change', function() {
+        displayContent(dropdown.value);
     });
 </script>
 
